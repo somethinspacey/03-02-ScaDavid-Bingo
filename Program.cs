@@ -70,10 +70,10 @@ namespace _03_02_ScaDavid_Bingo
                     {
                         for (int k = 0; k < 5; k++)
                         {
-                            if (PlayerNumbers[j, k].Contains(Convert.ToString(CurrentRoundNumbers[i])))
+                            if (PlayerNumbers[j, k].Contains(Convert.ToString(" "+CurrentRoundNumbers[i]+" ")))
                             {
                                 PlayerCorrects[j]++;
-                                PlayerCorrectNumbers[j] += Convert.ToString(CurrentRoundNumbers[i]) + ", ";
+                                PlayerCorrectNumbers[j] += Convert.ToString(" "+CurrentRoundNumbers[i]) + " ";
                             }
                         }
                     }
