@@ -18,6 +18,7 @@ namespace _03_02_ScaDavid_Bingo
             string[,] PlayerNumbers = new string[10, 5];
             string[] PlayerCorrectNumbers = new string[10];
             int iForNumGen = 0;
+            string OneoffVar4DupeCheck = "";
             do
             {
                 
@@ -28,24 +29,23 @@ namespace _03_02_ScaDavid_Bingo
                         do
                         {
                             int TempNumber = rnd.Next(1, 76);
-                            if (PlayerNumbers[i, 0] == null &&( PlayerNumbers[i,0].Contains(Convert.ToString(TempNumber)) == false || PlayerNumbers[i, 1].Contains(Convert.ToString(TempNumber)) == false || PlayerNumbers[i, 2].Contains(Convert.ToString(TempNumber)) == false || PlayerNumbers[i, 3].Contains(Convert.ToString(TempNumber)) == false || PlayerNumbers[i, 4].Contains(Convert.ToString(TempNumber)) == false))
-                            {
-                                GeneratedNumbers += Convert.ToString(TempNumber) + " ";
-                                iForNumGen++;//round here is where we get dupes and i have genuinely zero idea why, the amount of shit ive gone thru is unimaginably large and every time its either dupes or nullreference
-                            }
-                            else if (PlayerNumbers[i,0].Contains(Convert.ToString(TempNumber)) || PlayerNumbers[i, 1].Contains(Convert.ToString(TempNumber)) || PlayerNumbers[i,2].Contains(Convert.ToString(TempNumber)) || PlayerNumbers[i, 3].Contains(Convert.ToString(TempNumber)) || PlayerNumbers[i, 4].Contains(Convert.ToString(TempNumber)))
+                            if (OneoffVar4DupeCheck.Contains(Convert.ToString(" "+TempNumber+" ")))
                             {
                                 continue;
                             }
                             else
                             {
-                                GeneratedNumbers += Convert.ToString(TempNumber) + " ";
+                                GeneratedNumbers +=" " + TempNumber + " ";
+                                OneoffVar4DupeCheck +=" " + TempNumber + " ";
                                 iForNumGen++;
                             }
+                            
                         } while (iForNumGen < 5);
                         PlayerNumbers[i, j] = GeneratedNumbers;
                         iForNumGen = 0;
+                        
                     }
+                    OneoffVar4DupeCheck = " ";
                 }
                 iForNumGen = 0;
                 do
@@ -53,7 +53,6 @@ namespace _03_02_ScaDavid_Bingo
                     int TempNumber = rnd.Next(1, 76);
                     if (CurrentRoundNumbers.Contains(TempNumber))
                     {
-                        TempNumber = rnd.Next(1, 76);
                         continue;
                     }
                     else
@@ -62,7 +61,7 @@ namespace _03_02_ScaDavid_Bingo
                         iForNumGen++;
                     }
 
-                } while (CurrentRoundNumbers[19] == 0);
+                } while (iForNumGen <20);
 
                 for(int i = 0; i < 20; i++)
                 {
